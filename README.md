@@ -65,10 +65,10 @@ Anyone who wants to learn how to build full stack apps with the latest in web te
 
 ## Course Diagrams
 
-- You can view all course diagrams on your own here: https://github.com/StephenGrider/FullstackReactCode/tree/master/diagrams
-- All diagrams are authored using https://www.draw.io/
+- You can view all course diagrams on your own at: [Diagrams Page][diagrams link]
+- All diagrams are authored using [draw.io][draw.io]
 - You can edit diagrams on your own!
-    - Go to https://github.com/StephenGrider/FullstackReactCode/tree/master/diagrams
+    - Go to [Diagrams Page][diagrams link]
     - Open the folder containing the set of diagrams you want to edit
     - Click on the ‘.xml’ file
     - Click the ‘raw’ button
@@ -84,4 +84,5 @@ Anyone who wants to learn how to build full stack apps with the latest in web te
 
    [Stephen Grider]: <https://www.udemy.com/user/sgslo/>
    [udemy link]: <https://www.udemy.com/node-with-react-fullstack-web-development/>
+   [diagrams link]: <https://github.com/ApoGouv/fullstack-node-with-react/tree/master/diagrams>
    [draw.io]: <https://www.draw.io/>
