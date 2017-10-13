@@ -24,10 +24,15 @@ app.get('/', (req, res) => {
   res.send({ hi: 'there' });
 });
 
+
 /**
- * Here, express tell Node to listen for incoming traffic at port: 5000
+ * Here, express tell Node to listen for incoming traffic at a specific port
  */
-app.listen(5000, () => {
-  console.log('Server up at port 5000');
-  console.log('http://localhost:5000/');
+// get the PORT from the environment variable 'PORT' if is defined. Else set PORT = 5000
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server up at port ${PORT}`);
+  if (PORT === 5000) {
+    console.log('http://localhost:5000/');
+  }
 });
