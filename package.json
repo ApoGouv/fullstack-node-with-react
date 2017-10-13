@@ -1,0 +1,10 @@
+{
+  "name": "fullstack-node-with-react",
+  "version": "1.0.0",
+  "description": "Fullstack node with React development of a: Feedback-Collection app ",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "1.7.4"
+  }
+}
