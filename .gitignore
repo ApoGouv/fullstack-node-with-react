@@ -38,7 +38,8 @@ $RECYCLE.BIN/
 *.msp
 # Windows shortcuts
 *.lnk
-
+# wWindows
+.DS_Store
 # Archives
 *.zip
 
