@@ -21,7 +21,7 @@ const app = express();
  */
 app.get('/', (req, res) => {
   // Immediately send some JSON back to who ever made this request
-  res.send({ hi: 'there' });
+  res.send({ bye: 'buddy' });
 });
 
 
