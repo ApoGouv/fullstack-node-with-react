@@ -8,11 +8,13 @@
 /* By convention, this is our root file - kind of the start up file inside of our node project */
 const express = require('express');
 const mongoose = require('mongoose');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+
 const keys = require('./config/keys');
 
 require('./models/User'); // load user model
 require('./services/passport'); // Passport config file
-
 
 // connect to the MongoDB
 mongoose.connect(keys.mongoURI);
@@ -20,9 +22,24 @@ mongoose.connect(keys.mongoURI);
 // generate a new express application
 const app = express();
 
+/**
+ * Instruct our express server to use cookies
+ * maxAge: 30 days * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds === 30 days
+ * keys: has a random string, which will be used to encrypt our cookie
+ */
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
+  })
+);
+
+// Instruct Passport to use cookies
+app.use(passport.initialize());
+app.use(passport.session());
+
 // authRoutes.js: return a function
 require('./routes/authRoutes')(app);
-
 
 /**
  * Here, express tell Node to listen for incoming traffic at a specific port

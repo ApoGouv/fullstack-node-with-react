@@ -27,4 +27,14 @@ module.exports = (app) => {
    * handle the last request exchange with google servers
    */
   app.get('/auth/google/callback', passport.authenticate('google'));
+
+  /**
+   * route: GET /api/current_user
+   * req: incoming Request
+   * res: outgoing Response
+   */
+  app.get('/api/current_user', (req, res) => {
+    res.send(req.user);
+  });
+
 };
