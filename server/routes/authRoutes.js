@@ -29,6 +29,15 @@ module.exports = (app) => {
   app.get('/auth/google/callback', passport.authenticate('google'));
 
   /**
+   * route: GET /api/logout
+   */
+  app.get('/api/logout', (req, res) => {
+    // kills the cookie
+    req.logout();
+    res.send(req.user);
+  });
+
+  /**
    * route: GET /api/current_user
    * req: incoming Request
    * res: outgoing Response
