@@ -13,9 +13,14 @@
  */
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const mongoose = require('mongoose');
 
 const keys = require('../config/keys');
 
+// Create a Model Class by fetching the 'users' collection
+// -quick reminder: A model class is used to access a single collection sitting inside of MongoDB
+//                  and we will use this Model Class to make model instances which will represent our DB records
+const User = mongoose.model('users');
 
 passport.use(
   new GoogleStrategy(
@@ -25,12 +30,10 @@ passport.use(
       callbackURL: '/auth/google/callback'
     },
     (accessToken, refreshToken, profile, done) => {
-      // accessToken: proves that we can read/or make changes to a users Google profile
-      console.log('Access token:', accessToken);
-      // refreshToken: let us to automatically refresh the accessToken, which by default expires after some time
-      console.log('Refresh token:', refreshToken);
-      // profile: an object, containing the users profile information
-      console.log('Profile:', profile);
+      // create a user Model Instance and save() it to the DB
+      new User({
+        googleId: profile.id
+      }).save();
     }
   )
 );

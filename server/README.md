@@ -1,4 +1,4 @@
-# Emaily
+# FeedColla
 
 A feedback collection app
 

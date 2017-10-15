@@ -7,9 +7,15 @@
 
 /* By convention, this is our root file - kind of the start up file inside of our node project */
 const express = require('express');
+const mongoose = require('mongoose');
+const keys = require('./config/keys');
 
+require('./models/User'); // load user model
 require('./services/passport'); // Passport config file
 
+
+// connect to the MongoDB
+mongoose.connect(keys.mongoURI);
 
 // generate a new express application
 const app = express();
