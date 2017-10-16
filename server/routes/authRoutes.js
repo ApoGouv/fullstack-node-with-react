@@ -6,14 +6,16 @@
  */
 const passport = require('passport');
 
-module.exports = (app) => {
+module.exports = app => {
   /**
-   * When a user comes to the http://localhost:5000/auth/google
+   * GET /auth/google
    * we want to kick them into our OAuth flow which is being entirely managed by passport.
    * So we are saying: Hey passport, attempt to authenticate the user who is coming to this
    * route and use the strategy called 'google'.
    * The second argument we pass is an object, with a 'scope' property.
    * scope: specifies to google what access we want to have inside of this user's profile.
+   * - full list for google scope
+   * - https://developers.google.com/identity/protocols/googlescopes#adexchangesellerv2.0
    */
   app.get(
     '/auth/google',
@@ -26,10 +28,37 @@ module.exports = (app) => {
    * We have the 'code'. so call passport with 'google' strategy to
    * handle the last request exchange with google servers
    */
-  app.get('/auth/google/callback', passport.authenticate('google'));
+  app.get(
+    '/auth/google/callback',
+    passport.authenticate('google', {
+      failureRedirect: '/'
+    })
+  );
 
   /**
-   * route: GET /api/logout
+   * GET /auth/facebook
+   * - full list for facebook scope
+   * - https://developers.facebook.com/docs/facebook-login/permissions
+   */
+  app.get(
+    '/auth/facebook',
+    passport.authenticate('facebook', {
+      scope: ['public_profile', 'email']
+    })
+  );
+
+  /**
+   * GET /auth/facebook/callback
+   */
+  app.get(
+    '/auth/facebook/callback',
+    passport.authenticate('facebook', {
+      failureRedirect: '/'
+    })
+  );
+
+  /**
+   * GET /api/logout
    */
   app.get('/api/logout', (req, res) => {
     // kills the cookie
@@ -45,5 +74,4 @@ module.exports = (app) => {
   app.get('/api/current_user', (req, res) => {
     res.send(req.user);
   });
-
 };

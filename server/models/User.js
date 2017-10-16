@@ -16,10 +16,16 @@ const { Schema } = mongoose;
  * Define our User schema.
  * - We can add/remove properties to our schema at any time
  * @type {*}
+ * index: true options to email to optimize queries that use this field
+ * {timestamps: true} option creates a createdAt and updatedAt field on our models that contain timestamps which
+ *                    will get automatically updated when our model changes.
  */
 const userSchema = new Schema({
-  googleId: String
-});
+  googleId: String,
+  facebookId: String,
+  email: {type: String, lowercase: true, match: [/\S+@\S+\.\S+/, 'is invalid'], index: true},
+  name: String
+}, {timestamps: true});
 
 /**
  * Load our userSchema into mongoose, by

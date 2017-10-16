@@ -17,12 +17,24 @@ require('./models/User'); // load user model
 require('./services/passport'); // Passport config file
 
 // connect to the MongoDB
-mongoose.connect(keys.mongoURI);
+// Use native promises
+mongoose.Promise = global.Promise;
+mongoose.connect(keys.mongo.dev.URI, { useMongoClient: true })
+  .then(() =>  console.log('Connection to MongoDB successful.'))
+  .catch((err) => console.error(err));
 
 // generate a new express application
 const app = express();
 
+// application-level middleware for common functionality - will run before request processed by route handler
 /**
+ * with app.use(): we create a middleware.
+ * Middlewares are small functions that can be used to modify incoming requests to our app
+ * before they are sent off to route handlers
+ */
+
+/**
+ * Middleware
  * Instruct our express server to use cookies
  * maxAge: 30 days * 24 hours * 60 minutes * 60 seconds * 1000 milliseconds === 30 days
  * keys: has a random string, which will be used to encrypt our cookie
@@ -30,7 +42,7 @@ const app = express();
 app.use(
   cookieSession({
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    keys: [keys.cookieKey]
+    keys: [keys.cookieSecret]
   })
 );
 
