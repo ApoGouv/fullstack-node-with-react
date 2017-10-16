@@ -19,7 +19,7 @@ require('./services/passport'); // Passport config file
 // connect to the MongoDB
 // Use native promises
 mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongo.dev.URI, { useMongoClient: true })
+mongoose.connect(keys.mongo.URI, { useMongoClient: true })
   .then(() =>  console.log('Connection to MongoDB successful.'))
   .catch((err) => console.error(err));
 

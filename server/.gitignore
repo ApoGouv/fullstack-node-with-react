@@ -45,4 +45,4 @@ $RECYCLE.BIN/
 node_modules/
 
 # Custom
-keys.js
+dev.js
