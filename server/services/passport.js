@@ -58,8 +58,6 @@ passport.use(
       callbackURL: keys.google.callbackURI
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log('Google: ', profile);
-      console.log('Google mail: ', profile.emails);
       // make a query to our DB to see if a user with the same Google ID, already exists.
       User.findOne({ email: profile.emails[0].value }).then(existingUser => {
         if (existingUser) {
@@ -97,8 +95,6 @@ passport.use(
       profileFields: ['id', 'displayName', 'email']
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log('Facebook: ', profile);
-      // console.log('Facebook mail: ', profile.email);
       User.findOne({ email: profile.emails[0].value }).then(existingUser => {
         if (existingUser) {
           done(null, existingUser);

@@ -10,12 +10,15 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "server": "nodemon index.js",
+    "client": "( cd ./client && yarn start)",
+    "dev": "concurrently \"yarn server\" \"yarn client\""
   },
   "devDependencies": {
     "prettier": "1.7.4"
   },
   "dependencies": {
+    "concurrently": "^3.5.0",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.2",
     "mongoose": "^4.12.2",
