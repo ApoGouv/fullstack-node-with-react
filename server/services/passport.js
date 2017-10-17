@@ -58,28 +58,25 @@ passport.use(
       callbackURL: keys.google.callbackURI,
       proxy: true
     },
-    (accessToken, refreshToken, profile, done) => {
+    async (accessToken, refreshToken, profile, done) => {
       // make a query to our DB to see if a user with the same Google ID, already exists.
-      User.findOne({ email: profile.emails[0].value }).then(existingUser => {
-        if (existingUser) {
-          // we already have a record with the given profile ID
-          // inform passport that we are finished, without any error (null) and return the found user
-          done(null, existingUser);
-        } else {
-          // we don't have a user record with this ID, so make a new record to the DB
-          // create a user Model Instance and save() it to the DB
-          new User({
-            googleId: profile.id,
-            name: profile.displayName,
-            email: profile.emails[0].value
-          })
-            .save()
-            .then(user => {
-              console.log('saving user ...');
-              done(null, user);
-            });
-        }
+      const existingUser = await User.findOne({
+        email: profile.emails[0].value
       });
+      if (existingUser) {
+        // we already have a record with the given profile ID
+        // inform passport that we are finished, without any error (null) and return the found user
+        return done(null, existingUser);
+      }
+      // we don't have a user record with this ID, so make a new record to the DB
+      // create a user Model Instance and save() it to the DB
+      const user = await new User({
+        googleId: profile.id,
+        name: profile.displayName,
+        email: profile.emails[0].value
+      }).save();
+      console.log('saving user ...');
+      done(null, user);
     }
   )
 );
@@ -96,23 +93,18 @@ passport.use(
       profileFields: ['id', 'displayName', 'email'],
       proxy: true
     },
-    function(accessToken, refreshToken, profile, done) {
-      User.findOne({ email: profile.emails[0].value }).then(existingUser => {
-        if (existingUser) {
-          done(null, existingUser);
-        } else {
-          new User({
-            facebookId: profile.id,
-            name: profile.displayName,
-            email: profile.emails[0].value
-          })
-            .save()
-            .then(user => {
-              console.log('saving user ...');
-              done(null, user);
-            });
-        }
-      });
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = User.findOne({ email: profile.emails[0].value });
+      if (existingUser) {
+        return done(null, existingUser);
+      }
+      const user = await new User({
+        facebookId: profile.id,
+        name: profile.displayName,
+        email: profile.emails[0].value
+      }).save();
+      console.log('saving user ...');
+      done(null, user);
     }
   )
 );
