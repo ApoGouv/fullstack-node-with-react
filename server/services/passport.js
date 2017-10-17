@@ -55,7 +55,8 @@ passport.use(
     {
       clientID: keys.google.clientID,
       clientSecret: keys.google.clientSecret,
-      callbackURL: keys.google.callbackURI
+      callbackURL: keys.google.callbackURI,
+      proxy: true
     },
     (accessToken, refreshToken, profile, done) => {
       // make a query to our DB to see if a user with the same Google ID, already exists.
@@ -92,7 +93,8 @@ passport.use(
       clientID: keys.facebook.appID,
       clientSecret: keys.facebook.appSecret,
       callbackURL: keys.facebook.callbackURI,
-      profileFields: ['id', 'displayName', 'email']
+      profileFields: ['id', 'displayName', 'email'],
+      proxy: true
     },
     function(accessToken, refreshToken, profile, done) {
       User.findOne({ email: profile.emails[0].value }).then(existingUser => {
