@@ -10,6 +10,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 
 const keys = require('./config/keys');
 
@@ -33,6 +34,9 @@ const app = express();
  * before they are sent off to route handlers
  */
 
+// assign to req.boy any request coming to our server
+app.use(bodyParser.json());
+
 /**
  * Middleware
  * Instruct our express server to use cookies
@@ -52,6 +56,7 @@ app.use(passport.session());
 
 // authRoutes.js: return a function
 require('./routes/authRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 /**
  * Here, express tell Node to listen for incoming traffic at a specific port

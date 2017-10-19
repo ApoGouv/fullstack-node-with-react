@@ -24,7 +24,8 @@ const userSchema = new Schema({
   googleId: String,
   facebookId: String,
   email: {type: String, lowercase: true, match: [/\S+@\S+\.\S+/, 'is invalid'], index: true},
-  name: String
+  name: String,
+  credits: {type: Number, default: 0}
 }, {timestamps: true});
 
 /**
