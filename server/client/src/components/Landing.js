@@ -6,6 +6,8 @@
  */
 import React from 'react';
 import Particles from 'react-particles-js';
+import {particlesJsConfig} from './../config/particlesjs-config';
+
 
 function Landing() {
   return (
@@ -28,17 +30,7 @@ function Landing() {
               }}>
           <Particles
             height="400px"
-            params={{
-              particles: {
-                line_linked: {
-                  shadow: {
-                    enable: true,
-                    color: "#3CA9D1",
-                    blur: 5
-                  }
-                }
-              }
-            }}
+            params={particlesJsConfig}
             style={{
               width: '100%',
               height: '400px'
