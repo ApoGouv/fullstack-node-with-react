@@ -7,36 +7,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
-
+import Payments from './Payments';
 
 class Header extends Component {
-  renderContent(){
-    switch (this.props.auth){
+  renderContent() {
+    switch (this.props.auth) {
       case null:
         return;
       case false:
-        return (
-        <ul className="right">
+        return [
           <li>
-            <i className="fa fa-sign-in" aria-hidden="true"></i> Login With
-          </li>
+            <i className="fa fa-sign-in" aria-hidden="true" /> Login With
+          </li>,
           <li>
-            <a href="/auth/google"><i className="fa fa-google"></i></a>
-          </li>
+            <a href="/auth/google">
+              <i className="fa fa-google" />
+            </a>
+          </li>,
           <li>
-            <a href="/auth/facebook"><i className="fa fa-facebook"></i></a>
+            <a href="/auth/facebook">
+              <i className="fa fa-facebook" />
+            </a>
           </li>
-        </ul>
-        );
+        ];
       default:
-        return (
-          <ul className="right">
-            <li>
-              <a href="/api/logout">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a>
-            </li>
-          </ul>
-        );
+        return [
+          <li>
+            <Payments />
+          </li>,
+          <li>
+            <a href="/api/logout">
+              Logout <i class="fa fa-sign-out" aria-hidden="true" />
+            </a>
+          </li>
+        ];
     }
   }
 
@@ -50,14 +54,14 @@ class Header extends Component {
           >
             FeedColla
           </Link>
-            {this.renderContent()}
+          <ul className="right">{this.renderContent()}</ul>
         </div>
       </nav>
     );
   }
 }
 
-function mapStateToProps({auth}){
+function mapStateToProps({ auth }) {
   return { auth };
 }
 
