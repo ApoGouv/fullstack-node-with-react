@@ -20,8 +20,8 @@ require('./services/passport'); // Passport config file
 // connect to the MongoDB
 // Use native promises
 mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongo.URI, { useMongoClient: true })
-  .then(() =>  console.log('Connection to MongoDB successful.'))
+mongoose.connect(keys.mongo.URI, {useMongoClient: true})
+  .then(() => console.log('Connection to MongoDB successful.'))
   .catch((err) => console.error(err));
 
 // generate a new express application
@@ -57,6 +57,19 @@ app.use(passport.session());
 // authRoutes.js: return a function
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+
+// config express to work in production env
+if (process.env.NODE_ENV === 'production') {
+  // *** the order we declare the below config plays big role!! ***
+  // Express will serve up production assets. e.g. main.js, main.css
+  app.use(express.static('client/build'));
+
+  // Express will serve up the index.html file, if it doesn't recognize the route
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  })
+}
 
 /**
  * Here, express tell Node to listen for incoming traffic at a specific port
