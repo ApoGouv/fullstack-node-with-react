@@ -32,7 +32,10 @@ module.exports = app => {
     '/auth/google/callback',
     passport.authenticate('google', {
       failureRedirect: '/'
-    })
+    }),
+    (req, res) => {
+      res.redirect('/surveys');
+    }
   );
 
   /**
@@ -54,7 +57,10 @@ module.exports = app => {
     '/auth/facebook/callback',
     passport.authenticate('facebook', {
       failureRedirect: '/'
-    })
+    }),
+    (req, res) => {
+      res.redirect('/surveys');
+    }
   );
 
   /**
@@ -63,7 +69,7 @@ module.exports = app => {
   app.get('/api/logout', (req, res) => {
     // kills the cookie
     req.logout();
-    res.send(req.user);
+    res.redirect('/');
   });
 
   /**
