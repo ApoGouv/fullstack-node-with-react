@@ -16,15 +16,15 @@ class Header extends Component {
         return;
       case false:
         return [
-          <li>
+          <li key="menu-item-1">
             <i className="fa fa-sign-in" aria-hidden="true" /> Login With
           </li>,
-          <li>
+          <li key="menu-item-2">
             <a href="/auth/google">
               <i className="fa fa-google" />
             </a>
           </li>,
-          <li>
+          <li key="menu-item-3">
             <a href="/auth/facebook">
               <i className="fa fa-facebook" />
             </a>
@@ -32,12 +32,12 @@ class Header extends Component {
         ];
       default:
         return [
-          <li>
+          <li key="menu-item-4">
             <Payments />
           </li>,
-          <li>
+          <li key="menu-item-5">
             <a href="/api/logout">
-              Logout <i class="fa fa-sign-out" aria-hidden="true" />
+              Logout <i className="fa fa-sign-out" aria-hidden="true" />
             </a>
           </li>
         ];
