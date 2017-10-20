@@ -4,11 +4,10 @@
  * Author  : Apostolos Gouvalas
  * Date    : 19/10/2017
  */
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import * as actions from '../actions';
-
 
 /**
  * StripeCheckout Properties/Options
@@ -20,7 +19,7 @@ import * as actions from '../actions';
  */
 class Payments extends Component {
   render() {
-
+    console.log('*****************', process.env, '*****************');
     return (
       <StripeCheckout
         name="FeedColla"
