@@ -55,9 +55,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// authRoutes.js: return a function
+// authRoutes.js: return a function, to which we pass the app
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
+require('./routes/surveyRoutes')(app);
 
 // config express to work in production env
 if (process.env.NODE_ENV === 'production') {

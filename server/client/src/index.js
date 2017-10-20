@@ -12,9 +12,12 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import reduxThunk from 'redux-thunk';
 
-
 import App from './components/App';
 import reducers from './reducers';
+
+// DEV only axios helpers
+import axios from 'axios';
+window.axios = axios;
 
 // redux store - createStore( reducer, initial state, middleware )
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));

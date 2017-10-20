@@ -15,7 +15,7 @@ function Landing() {
       <section id="splash-blue"
                style={{
                  backgroundColor: '#272D4E',
-                 backgroundImage: 'radial-gradient(circle farthest-side at right bottom,#414b82 34%,#272d4e 100%)',
+                 backgroundImage: 'radial-gradient(circle farthest-side at right bottom,rgba(39, 45, 78, 1) 34%,rgb(38, 166, 154) 100%)',
                  position: 'relative',
                  paddingTop: '70px',
                  paddingBottom: '160px'

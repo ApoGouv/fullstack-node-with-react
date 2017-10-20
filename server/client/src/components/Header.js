@@ -48,9 +48,14 @@ class Header extends Component {
   }
 
   render() {
+    let gradientBG = {
+      backgroundColor: `rgb(39, 45, 78)`,
+      backgroundImage: `radial-gradient(circle farthest-side at right bottom, rgb(39, 45, 78) 34%, rgb(38, 166, 154) 100%)`
+    };
+
     return (
       <nav>
-        <div className="nav-wrapper">
+        <div className="nav-wrapper" style={gradientBG}>
           <Link
             to={this.props.auth ? '/surveys' : '/'}
             className="left brand-logo"

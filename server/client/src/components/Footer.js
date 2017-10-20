@@ -58,8 +58,12 @@ class Footer extends Component {
   }
 
   render() {
+    let gradientBG = {
+      backgroundColor: `rgb(39, 45, 78)`,
+      backgroundImage: `radial-gradient(circle farthest-side at right bottom, rgb(39, 45, 78) 34%, rgb(38, 166, 154) 100%)`
+    };
     return (
-      <footer className="page-footer">
+      <footer className="page-footer" style={gradientBG}>
         {this.renderContent()}
         <div className="footer-copyright">
           <div className="container">
