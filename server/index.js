@@ -15,6 +15,7 @@ const bodyParser = require('body-parser');
 const keys = require('./config/keys');
 
 require('./models/User'); // load user model
+require('./models/Survey'); // load survey model
 require('./services/passport'); // Passport config file
 
 // connect to the MongoDB
