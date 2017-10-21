@@ -8,7 +8,6 @@ import React from 'react';
 import Particles from 'react-particles-js';
 import {particlesJsConfig} from './../config/particlesjs-config';
 
-
 function Landing() {
   return (
     <div>
@@ -20,14 +19,14 @@ function Landing() {
                  paddingTop: '70px',
                  paddingBottom: '160px'
                }}
-               className="z-depth-1" >
+               className="z-depth-1">
         <div id="particles-js"
-              style={{
-                top: '0',
-                position: 'absolute',
-                width: '100%',
-                height: '100%'
-              }}>
+             style={{
+               top: '0',
+               position: 'absolute',
+               width: '100%',
+               height: '100%'
+             }}>
           <Particles
             height="400px"
             params={particlesJsConfig}
@@ -40,14 +39,8 @@ function Landing() {
         <div className="container">
           <div className="row hide-on-small-only hero-home">
             <div className="col m10 offset-m1 s12 l10 offset-l1">
-              <h1 className="white-text main-title center-align">FeedColla!</h1>
-              <h5 className="white-text sub-title center-align">Collect feedback from your users</h5>
-            </div>
-          </div>
-          <div className="row hide-on-med-and-up center-align">
-            <div className="col s12">
-              <h1 className="white-text main-title center-align">FeedColla!</h1>
-              <h5 className="white-text center-align">Collect feedback from<br />your<br />users</h5>
+              <h1 className="white-text main-title center-align">FeedColla</h1>
+              <h5 className="white-text sub-title center-align">Collect feedback from your users!</h5>
             </div>
           </div>
         </div>
