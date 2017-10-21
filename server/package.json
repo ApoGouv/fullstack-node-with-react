@@ -12,12 +12,14 @@
     "start": "node index.js",
     "server": "nodemon index.js",
     "client": "( cd ./client && yarn start)",
-    "dev": "concurrently \"yarn server\" \"yarn client\"",
+    "dev": "concurrently \"yarn server\" \"yarn client\" \"yarn webhook\"",
     "client-install": "(cd ./client && yarn install)",
     "client-build": "(cd ./client && yarn run build)",
-    "heroku-postbuild": "YARN_PRODUCTION=false yarn run client-install && yarn run client-build"
+    "heroku-postbuild": "YARN_PRODUCTION=false yarn run client-install && yarn run client-build",
+    "webhook": "forever sendgrid_webhook.js"
   },
   "devDependencies": {
+    "forever": "^0.15.3",
     "prettier": "1.7.4"
   },
   "dependencies": {
@@ -25,11 +27,14 @@
     "concurrently": "^3.5.0",
     "cookie-session": "^2.0.0-beta.3",
     "express": "^4.16.2",
+    "localtunnel": "^1.8.3",
+    "lodash": "^4.17.4",
     "mongoose": "^4.12.2",
     "nodemon": "^1.12.1",
     "passport": "^0.4.0",
     "passport-facebook": "^2.1.1",
     "passport-google-oauth20": "^1.0.0",
+    "path-parser": "^2.0.2",
     "sendgrid": "^5.2.3",
     "stripe": "^5.1.1"
   }
